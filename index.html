@@ -21,6 +21,38 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '810870364294543');
     fbq('track', 'PageView');
+
+    // Simplified event tracking functions
+    function trackAddToCart(quantity = 1) {
+      fbq('track', 'AddToCart', {
+        content_name: 'TitanX-H11 Smartwatch',
+        content_category: 'Watches',
+        content_ids: ['titanx-h11'],
+        content_type: 'product',
+        value: 95.90 * quantity,
+        currency: 'MYR'
+      });
+    }
+
+    function trackInitiateCheckout(quantity, totalValue) {
+      fbq('track', 'InitiateCheckout', {
+        content_ids: ['titanx-h11'],
+        content_type: 'product',
+        value: totalValue,
+        currency: 'MYR',
+        num_items: quantity
+      });
+    }
+
+    function trackPurchase(quantity, totalValue) {
+      fbq('track', 'Purchase', {
+        content_ids: ['titanx-h11'],
+        content_type: 'product',
+        value: totalValue,
+        currency: 'MYR',
+        num_items: quantity
+      });
+    }
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=810870364294543&ev=PageView&noscript=1"
@@ -302,78 +334,78 @@
         }
 
         /* WhatsApp Reviews Section */
-.whatsapp-reviews-section {
-    padding: 80px 0;
-    background: var(--bg-dark);
-}
+        .whatsapp-reviews-section {
+            padding: 80px 0;
+            background: var(--bg-dark);
+        }
 
-.whatsapp-reviews-container {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    margin: 0 auto;
-    max-width: 1200px;
-}
+        .whatsapp-reviews-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
 
-.whatsapp-reviews-scroll {
-    display: flex;
-    overflow-x: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--accent-color);
-    scroll-behavior: smooth;
-    padding: 20px 0;
-}
+        .whatsapp-reviews-scroll {
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-color);
+            scroll-behavior: smooth;
+            padding: 20px 0;
+        }
 
-.whatsapp-reviews-scroll::-webkit-scrollbar {
-    height: 8px;
-}
+        .whatsapp-reviews-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
 
-.whatsapp-reviews-scroll::-webkit-scrollbar-track {
-    background: var(--bg-hover);
-    border-radius: 4px;
-}
+        .whatsapp-reviews-scroll::-webkit-scrollbar-track {
+            background: var(--bg-hover);
+            border-radius: 4px;
+        }
 
-.whatsapp-reviews-scroll::-webkit-scrollbar-thumb {
-    background: var(--accent-color);
-    border-radius: 4px;
-}
+        .whatsapp-reviews-scroll::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 4px;
+        }
 
-.whatsapp-review {
-    flex: 0 0 auto;
-    width: 300px;
-    height: 534px; /* 9:16 aspect ratio */
-    margin: 0 10px;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
+        .whatsapp-review {
+            flex: 0 0 auto;
+            width: 300px;
+            height: 534px; /* 9:16 aspect ratio */
+            margin: 0 10px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
 
-.whatsapp-review:hover {
-    transform: scale(1.03);
-}
+        .whatsapp-review:hover {
+            transform: scale(1.03);
+        }
 
-.whatsapp-review img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
+        .whatsapp-review img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
 
-/* Auto-scroll functionality */
-@keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
-}
+        /* Auto-scroll functionality */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
 
-/* Mobile responsiveness */
-@media(max-width: 768px) {
-    .whatsapp-review {
-        width: 250px;
-        height: 444px; /* Maintain 9:16 aspect ratio */
-    }
-}
+        /* Mobile responsiveness */
+        @media(max-width: 768px) {
+            .whatsapp-review {
+                width: 250px;
+                height: 444px; /* Maintain 9:16 aspect ratio */
+            }
+        }
 
         /* Pricing Section */
         .pricing-section {
@@ -2229,7 +2261,7 @@
             userSecretKey: 'b2kcp05o-b5m0-q000-55i7-w3j57riufv7h',
             categoryCode: 'ltigdivv',
             callbackUrl: 'https://hasratitanx.vercel.app/payment-callback.html',
-            returnUrl: 'https://hasratitanx.vercel.app/payment-success.html',
+            returnUrl: 'https://hasratitanx.vercel.app/payment-successful.html',
             failedUrl: 'https://hasratitanx.vercel.app/payment-failed.html'
         };
         
@@ -2274,64 +2306,64 @@
         });
 
         // Auto-scroll functionality for WhatsApp reviews
-function initWhatsAppReviewsScroll() {
-    const reviewsScroll = document.querySelector('.whatsapp-reviews-scroll');
-    if (!reviewsScroll) return;
-    
-    // Clone the items for seamless scrolling
-    const reviews = Array.from(reviewsScroll.children);
-    reviews.forEach(review => {
-        const clone = review.cloneNode(true);
-        reviewsScroll.appendChild(clone);
-    });
-    
-    let scrollAmount = 0;
-    let scrollSpeed = 1; // pixels per frame
-    let isPaused = false;
-    
-    // Auto-scroll function
-    function autoScroll() {
-        if (!isPaused) {
-            scrollAmount += scrollSpeed;
+        function initWhatsAppReviewsScroll() {
+            const reviewsScroll = document.querySelector('.whatsapp-reviews-scroll');
+            if (!reviewsScroll) return;
             
-            // Reset scroll position when reaching the end
-            if (scrollAmount >= reviewsScroll.scrollWidth / 2) {
-                scrollAmount = 0;
+            // Clone the items for seamless scrolling
+            const reviews = Array.from(reviewsScroll.children);
+            reviews.forEach(review => {
+                const clone = review.cloneNode(true);
+                reviewsScroll.appendChild(clone);
+            });
+            
+            let scrollAmount = 0;
+            let scrollSpeed = 1; // pixels per frame
+            let isPaused = false;
+            
+            // Auto-scroll function
+            function autoScroll() {
+                if (!isPaused) {
+                    scrollAmount += scrollSpeed;
+                    
+                    // Reset scroll position when reaching the end
+                    if (scrollAmount >= reviewsScroll.scrollWidth / 2) {
+                        scrollAmount = 0;
+                    }
+                    
+                    reviewsScroll.scrollLeft = scrollAmount;
+                }
+                requestAnimationFrame(autoScroll);
             }
             
-            reviewsScroll.scrollLeft = scrollAmount;
+            // Start auto-scroll
+            autoScroll();
+            
+            // Pause on hover
+            reviewsScroll.addEventListener('mouseenter', () => {
+                isPaused = true;
+            });
+            
+            reviewsScroll.addEventListener('mouseleave', () => {
+                isPaused = false;
+            });
+            
+            // Pause on touch
+            reviewsScroll.addEventListener('touchstart', () => {
+                isPaused = true;
+            });
+            
+            reviewsScroll.addEventListener('touchend', () => {
+                setTimeout(() => {
+                    isPaused = false;
+                }, 3000); // Resume after 3 seconds
+            });
         }
-        requestAnimationFrame(autoScroll);
-    }
-    
-    // Start auto-scroll
-    autoScroll();
-    
-    // Pause on hover
-    reviewsScroll.addEventListener('mouseenter', () => {
-        isPaused = true;
-    });
-    
-    reviewsScroll.addEventListener('mouseleave', () => {
-        isPaused = false;
-    });
-    
-    // Pause on touch
-    reviewsScroll.addEventListener('touchstart', () => {
-        isPaused = true;
-    });
-    
-    reviewsScroll.addEventListener('touchend', () => {
-        setTimeout(() => {
-            isPaused = false;
-        }, 3000); // Resume after 3 seconds
-    });
-}
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', () => {
-    initWhatsAppReviewsScroll();
-});
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            initWhatsAppReviewsScroll();
+        });
 
         // Video Section
         function showVideo() {
@@ -2431,6 +2463,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             document.getElementById('stockLeft').textContent = stockLeft;
             document.getElementById('buyersToday').textContent = buyersToday.toLocaleString();
+            
+            // Track AddToCart event
+            trackAddToCart(quantity);
             
             // Show success message
             showNotification('Pesanan anda telah diterima!');
@@ -2708,6 +2743,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 codAmount += 7.00; // RM7 courier fee
             }
             
+            // Track InitiateCheckout event
+            trackInitiateCheckout(totalItems, totalAmount);
+            
             // Prepare order data for Telegram and Discord
             const productNames = cart.map(item => {
                 const colorName = item.color === 'black' ? 'Hitam' : 
@@ -2745,15 +2783,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.error('Failed to send Discord notification');
                 }
                 
-                // Track InitiateCheckout event
-                fbq('track', 'InitiateCheckout', {
-                    content_ids: cart.map(item => item.name.replace(/\s+/g, '-')),
-                    content_type: 'product',
-                    value: totalAmount,
-                    currency: 'MYR',
-                    num_items: totalItems
-                });
-                
                 // Hide loading overlay
                 hideLoading();
                 
@@ -2770,15 +2799,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Clear cart after successful order
                 cart = [];
                 updateCart();
-                
-                // Track Purchase event
-                fbq('track', 'Purchase', {
-                    content_ids: cart.map(item => item.name.replace(/\s+/g, '-')),
-                    content_type: 'product',
-                    value: totalAmount,
-                    currency: 'MYR',
-                    num_items: totalItems
-                });
                 
             } catch (error) {
                 console.error('Error processing order:', error);
@@ -2800,6 +2820,9 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('orderQuantity').textContent = orderData.quantity;
             document.getElementById('orderTotal').textContent = `RM${orderData.total.toFixed(2)}`;
             document.getElementById('orderCodTotal').textContent = `RM${orderData.codTotal.toFixed(2)}`;
+            
+            // Track Purchase event for COD
+            trackPurchase(orderData.quantity, orderData.total);
             
             // Generate WhatsApp URL and set it to the button
             const whatsappURL = generateWhatsAppURL(orderData, orderId);
@@ -3212,7 +3235,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 showNotification('Voucher berjaya dituntung! RM93.10 akan dipotong semasa pembayaran.', 'success');
                 updateCart(); // Refresh cart display
             } else {
-                showNotification('Anda telah menuntung voucher ini sebelum ini.', 'info');
+                showNotification('Anda telah menuntut voucher ini sebelum ini.', 'info');
             }
             
             voucherPopup.classList.remove('active');
