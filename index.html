@@ -373,12 +373,46 @@
             background: var(--bg-dark);
         }
 
-        .whatsapp-reviews-container {
+        .whatsapp-reviews-wrapper {
             position: relative;
-            width: 100%;
-            overflow: hidden;
-            margin: 0 auto;
             max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(139, 92, 246, 0.8);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .scroll-btn:hover {
+            background: rgba(139, 92, 246, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .scroll-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .scroll-left {
+            left: -25px;
+        }
+
+        .scroll-right {
+            right: -25px;
         }
 
         .whatsapp-reviews-scroll {
@@ -388,6 +422,7 @@
             scrollbar-color: var(--accent-color);
             scroll-behavior: smooth;
             padding: 20px 0;
+            gap: 20px;
         }
 
         .whatsapp-reviews-scroll::-webkit-scrollbar {
@@ -407,8 +442,7 @@
         .whatsapp-review {
             flex: 0 0 auto;
             width: 300px;
-            height: 534px; /* 9:16 aspect ratio */
-            margin: 0 10px;
+            height: 534px;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -427,17 +461,44 @@
             display: block;
         }
 
-        /* Auto-scroll functionality */
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
-        }
-
         /* Mobile responsiveness */
         @media(max-width: 768px) {
             .whatsapp-review {
                 width: 250px;
-                height: 444px; /* Maintain 9:16 aspect ratio */
+                height: 444px;
+            }
+            
+            .scroll-btn {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .scroll-left {
+                left: -20px;
+            }
+            
+            .scroll-right {
+                right: -20px;
+            }
+        }
+
+        @media(max-width: 576px) {
+            .whatsapp-review {
+                width: 200px;
+                height: 356px;
+            }
+            
+            .scroll-btn {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .scroll-left {
+                left: -17px;
+            }
+            
+            .scroll-right {
+                right: -17px;
             }
         }
 
@@ -974,12 +1035,12 @@
             
             /* Make color selection images bigger on mobile */
             .color-option {
-                height: 180px; /* Increased height for mobile */
+                height: 180px;
             }
             
             .color-option img {
                 height: 100%;
-                object-fit: cover; /* Ensure images cover the container */
+                object-fit: cover;
             }
         }
         
@@ -1694,7 +1755,7 @@
                     <h1>TitanX-H11: Dibina Untuk Ketahanan, Direka Untuk Gaya.</h1>
                     <p>Pantau kesihatan, kekal aktif, dan nampak bergaya, semua dalam satu jam pintar lasak dengan rekaan yang memukau.</p>
                     <div class="stock-counter">
-                        <i class="fas fa-fire me-2"></i> 13 unit tinggal - Jangan ketinggalan!
+                        <i class="fas fa-fire me-2"></i> <span id="stockLeft">13</span> unit tinggal - Jangan ketinggalan!
                     </div>
                     <div class="d-flex flex-column flex-sm-row gap-3">
                         <button class="btn btn-light btn-lg px-4 py-3" onclick="scrollToPricing()">
@@ -1881,7 +1942,7 @@
                 <button class="scroll-btn scroll-left" id="scrollLeft">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <div class="whatsapp-reviews-scroll">
+                <div class="whatsapp-reviews-scroll" id="whatsappReviewsScroll">
                     <div class="whatsapp-review">
                         <img src="https://cdn.jsdelivr.net/gh/hasrastore-ops/titanmedia@v1.0/w1.webp" alt="WhatsApp Review 1">
                     </div>
@@ -2484,64 +2545,133 @@
             });
         });
 
-        // Auto-scroll functionality for WhatsApp reviews
-        function initWhatsAppReviewsScroll() {
-            const reviewsScroll = document.querySelector('.whatsapp-reviews-scroll');
-            if (!reviewsScroll) return;
+        // WhatsApp Reviews Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollContainer = document.getElementById('whatsappReviewsScroll');
+            const scrollLeftBtn = document.getElementById('scrollLeft');
+            const scrollRightBtn = document.getElementById('scrollRight');
             
-            // Clone the items for seamless scrolling
-            const reviews = Array.from(reviewsScroll.children);
-            reviews.forEach(review => {
-                const clone = review.cloneNode(true);
-                reviewsScroll.appendChild(clone);
+            if (!scrollContainer || !scrollLeftBtn || !scrollRightBtn) return;
+            
+            // Calculate scroll amount based on review width + gap
+            const getScrollAmount = () => {
+                const firstReview = scrollContainer.querySelector('.whatsapp-review');
+                if (!firstReview) return 300;
+                
+                const reviewWidth = firstReview.offsetWidth;
+                const gap = 20; // Match the CSS gap
+                return reviewWidth + gap;
+            };
+            
+            // Scroll left function
+            scrollLeftBtn.addEventListener('click', function() {
+                const scrollAmount = getScrollAmount();
+                scrollContainer.scrollBy({
+                    left: -scrollAmount,
+                    behavior: 'smooth'
+                });
             });
             
-            let scrollAmount = 0;
-            let scrollSpeed = 1; // pixels per frame
-            let isPaused = false;
+            // Scroll right function
+            scrollRightBtn.addEventListener('click', function() {
+                const scrollAmount = getScrollAmount();
+                scrollContainer.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+            });
             
-            // Auto-scroll function
-            function autoScroll() {
-                if (!isPaused) {
-                    scrollAmount += scrollSpeed;
-                    
-                    // Reset scroll position when reaching the end
-                    if (scrollAmount >= reviewsScroll.scrollWidth / 2) {
-                        scrollAmount = 0;
-                    }
-                    
-                    reviewsScroll.scrollLeft = scrollAmount;
-                }
-                requestAnimationFrame(autoScroll);
+            // Update button visibility based on scroll position
+            function updateButtonVisibility() {
+                const isAtStart = scrollContainer.scrollLeft <= 0;
+                const isAtEnd = scrollContainer.scrollLeft >= 
+                    scrollContainer.scrollWidth - scrollContainer.clientWidth - 5;
+                
+                scrollLeftBtn.style.opacity = isAtStart ? '0.3' : '1';
+                scrollLeftBtn.style.cursor = isAtStart ? 'not-allowed' : 'pointer';
+                
+                scrollRightBtn.style.opacity = isAtEnd ? '0.3' : '1';
+                scrollRightBtn.style.cursor = isAtEnd ? 'not-allowed' : 'pointer';
             }
             
-            // Start auto-scroll
-            autoScroll();
+            // Initial button visibility
+            updateButtonVisibility();
             
-            // Pause on hover
-            reviewsScroll.addEventListener('mouseenter', () => {
-                isPaused = true;
-            });
+            // Update on scroll
+            scrollContainer.addEventListener('scroll', updateButtonVisibility);
             
-            reviewsScroll.addEventListener('mouseleave', () => {
-                isPaused = false;
-            });
+            // Update on window resize
+            window.addEventListener('resize', updateButtonVisibility);
             
-            // Pause on touch
-            reviewsScroll.addEventListener('touchstart', () => {
-                isPaused = true;
+            // Add click to review for lightbox effect (optional)
+            const reviews = scrollContainer.querySelectorAll('.whatsapp-review');
+            reviews.forEach(review => {
+                review.addEventListener('click', function() {
+                    // Create lightbox
+                    const lightbox = document.createElement('div');
+                    lightbox.className = 'review-lightbox';
+                    lightbox.innerHTML = `
+                        <div class="lightbox-content">
+                            <img src="${this.querySelector('img').src}" alt="WhatsApp Review">
+                            <button class="lightbox-close">&times;</button>
+                        </div>
+                    `;
+                    
+                    // Add lightbox styles
+                    lightbox.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0, 0, 0, 0.9);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        z-index: 9999;
+                        cursor: pointer;
+                    `;
+                    
+                    const content = lightbox.querySelector('.lightbox-content');
+                    content.style.cssText = `
+                        position: relative;
+                        max-width: 90%;
+                        max-height: 90%;
+                    `;
+                    
+                    const img = lightbox.querySelector('img');
+                    img.style.cssText = `
+                        width: 100%;
+                        height: auto;
+                        border-radius: 10px;
+                    `;
+                    
+                    const closeBtn = lightbox.querySelector('.lightbox-close');
+                    closeBtn.style.cssText = `
+                        position: absolute;
+                        top: -40px;
+                        right: 0;
+                        background: none;
+                        border: none;
+                        color: white;
+                        font-size: 40px;
+                        cursor: pointer;
+                    `;
+                    
+                    // Add to page
+                    document.body.appendChild(lightbox);
+                    
+                    // Close on click
+                    lightbox.addEventListener('click', function() {
+                        document.body.removeChild(lightbox);
+                    });
+                    
+                    closeBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        document.body.removeChild(lightbox);
+                    });
+                });
             });
-            
-            reviewsScroll.addEventListener('touchend', () => {
-                setTimeout(() => {
-                    isPaused = false;
-                }, 3000); // Resume after 3 seconds
-            });
-        }
-
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            initWhatsAppReviewsScroll();
         });
 
         // Video Section Functions
@@ -2697,10 +2827,10 @@
             // Show success message
             showNotification('Pesanan anda telah diterima!');
             
-            // Open cart
+            // Open cart immediately after adding item
             setTimeout(() => {
                 toggleCart();
-            }, 500);
+            }, 300); // Reduced timeout for faster response
         }
 
         // Update Cart Display
@@ -2828,8 +2958,18 @@
             const cartSidebar = document.getElementById('cartSidebar');
             const cartOverlay = document.querySelector('.cart-overlay');
             
-            cartSidebar.classList.toggle('active');
-            cartOverlay.classList.toggle('active');
+            // Force cart to open (not toggle) when called from addToCart
+            if (!cartSidebar.classList.contains('active')) {
+                cartSidebar.classList.add('active');
+                cartOverlay.classList.add('active');
+                // Prevent body scroll when cart is open
+                document.body.style.overflow = 'hidden';
+            } else {
+                cartSidebar.classList.remove('active');
+                cartOverlay.classList.remove('active');
+                // Restore body scroll
+                document.body.style.overflow = '';
+            }
         }
 
         // Open Checkout Modal
