@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
     
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/hasrastore-ops/titanmedia@v1.0/d1.webp" as="image">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style">
+    
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -29,7 +33,7 @@
         content_category: 'Watches',
         content_ids: ['titanx-h11'],
         content_type: 'product',
-        value: 95.90 * quantity,
+        value: 89.90 * quantity,
         currency: 'MYR'
       });
     }
@@ -260,7 +264,6 @@
         .video-section {
             padding: 80px 0;
             background: var(--bg-card);
-            display: none;
         }
 
         .video-container {
@@ -307,6 +310,37 @@
         .play-button i {
             color: white;
             font-size: 2.5rem;
+        }
+
+        /* Video Controls */
+        .video-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            z-index: 3;
+        }
+
+        .video-control-btn {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-control-btn:hover {
+            background: rgba(0, 0, 0, 0.7);
+            transform: scale(1.1);
         }
 
         /* Testimonials Section */
@@ -949,6 +983,78 @@
             }
         }
         
+        /* Enhanced Mobile Experience */
+        @media(max-width: 576px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .price-tag {
+                font-size: 2rem;
+            }
+            
+            .floating-badges {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .badge-float {
+                font-size: 0.8rem;
+                padding: 5px 10px;
+            }
+            
+            .mobile-sticky-checkout {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: var(--bg-card);
+                padding: 15px;
+                z-index: 1000;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+            }
+            
+            .mobile-sticky-checkout .price {
+                font-weight: 700;
+                color: var(--primary-color);
+                font-size: 1.2rem;
+            }
+            
+            .mobile-sticky-checkout .btn {
+                padding: 10px 20px;
+                font-weight: 600;
+            }
+            
+            .video-controls {
+                bottom: 10px;
+            }
+            
+            .video-control-btn {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .color-option {
+                height: 150px;
+            }
+            
+            .countdown-timer {
+                gap: 5px;
+            }
+            
+            .countdown-item {
+                min-width: 50px;
+                padding: 8px 10px;
+            }
+            
+            .countdown-value {
+                font-size: 1.2rem;
+            }
+        }
+        
         /* Enhanced Cart Styles */
         .discount-info {
             background: rgba(16, 185, 129, 0.1);
@@ -1528,6 +1634,32 @@
             font-size: 24px;
             cursor: pointer;
         }
+        
+        /* Social Proof Notifications */
+        .social-proof-notification {
+            display: flex;
+            align-items: center;
+            background: var(--bg-card);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            margin-bottom: 10px;
+            animation: slideInRight 0.5s ease-out;
+            transition: opacity 0.3s ease;
+        }
+
+        .notification-icon {
+            margin-right: 15px;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .notification-content p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
     </style>
 </head>
 <body>
@@ -1562,11 +1694,11 @@
                     <h1>TitanX-H11: Dibina Untuk Ketahanan, Direka Untuk Gaya.</h1>
                     <p>Pantau kesihatan, kekal aktif, dan nampak bergaya, semua dalam satu jam pintar lasak dengan rekaan yang memukau.</p>
                     <div class="stock-counter">
-                        <i class="fas fa-fire me-2"></i> <span id="stockLeft">23</span> unit tinggal - Jangan ketinggalan!
+                        <i class="fas fa-fire me-2"></i> 13 unit tinggal - Jangan ketinggalan!
                     </div>
                     <div class="d-flex flex-column flex-sm-row gap-3">
                         <button class="btn btn-light btn-lg px-4 py-3" onclick="scrollToPricing()">
-                            <i class="fas fa-shopping-cart me-2"></i> Beli Sekarang - Jimat RM90
+                            <i class="fas fa-shopping-cart me-2"></i> Beli Sekarang - Jimat RM99.10
                         </button>
                         <button class="btn btn-outline-light btn-lg px-4 py-3" onclick="showVideo()">
                             <i class="fas fa-play-circle me-2"></i> Lihat Video
@@ -1641,7 +1773,7 @@
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="display-4 fw-bold">Video Produk TitanX-H11</h2>
-                <p class="lead text-white">Lihat sendiri kehebatan jam tangan pintar ini</p>
+                <p class="lead text-white">Tekan Play dan Lihat sendiri kehebatan jam tangan pintar ini</p>
             </div>
             <div class="video-container">
                 <video id="productVideo" width="100%" height="100%" style="object-fit: cover;">
@@ -1652,6 +1784,17 @@
                     <div class="play-button">
                         <i class="fas fa-play"></i>
                     </div>
+                </div>
+                <div class="video-controls">
+                    <button class="video-control-btn" id="playPauseBtn" onclick="togglePlayPause()">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button class="video-control-btn" id="replayBtn" onclick="replayVideo()">
+                        <i class="fas fa-redo"></i>
+                    </button>
+                    <button class="video-control-btn" id="muteBtn" onclick="toggleMute()">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -1773,8 +1916,8 @@
                         <h2 class="display-5 fw-bold mb-4">TitanX-H11</h2>
                         <div class="mb-4">
                             <span class="original-price">RM189</span>
-                            <div class="price-tag">RM95.90</div>
-                            <p class="lead text-white">Jimat RM93.10 (49% OFF)</p>
+                            <div class="price-tag">RM89.90</div>
+                            <p class="lead text-white">Jimat RM99.10 (52% OFF)</p>
                             <p class="text-success"><i class="fas fa-truck me-2"></i>Penghantaran Percuma</p>
                         </div>
                         
@@ -1909,11 +2052,12 @@
 
     <!-- Order Button -->
     <div class="order-float">
-        <div class="order-tooltip">Order sekarang & Jimat RM90</div>
+        <div class="order-tooltip">Order sekarang & Jimat RM99.10</div>
         <button class="order-button" onclick="scrollToPricing()">
-            <i class="fas fa-shopping-cart me-2"></i> Order - Jimat RM90
+            <i class="fas fa-shopping-cart me-2"></i> Order - Jimat RM99.10
         </button>
     </div>
+
 
     <!-- Cart Sidebar -->
     <div class="cart-overlay" onclick="toggleCart()"></div>
@@ -2081,11 +2225,11 @@
                 </div>
                 <div class="order-detail-row">
                     <span class="order-detail-label">Jumlah Bayaran:</span>
-                    <span class="order-detail-value" id="orderTotal">RM95.90</span>
+                    <span class="order-detail-value" id="orderTotal">RM89.90</span>
                 </div>
                 <div class="order-detail-row order-total-row">
                     <span class="order-detail-label">Jumlah Bayaran kepada Posmen:</span>
-                    <span class="order-total-value" id="orderCodTotal">RM102.90</span>
+                    <span class="order-total-value" id="orderCodTotal">RM96.90</span>
                 </div>
             </div>
             
@@ -2129,7 +2273,7 @@
                 </div>
                 <div class="online-payment-detail-row">
                     <span class="online-payment-detail-label">Jumlah Bayaran:</span>
-                    <span class="online-payment-detail-value" id="onlineOrderTotal">RM95.90</span>
+                    <span class="online-payment-detail-value" id="onlineOrderTotal">RM89.90</span>
                 </div>
             </div>
             
@@ -2183,7 +2327,7 @@
                 <i class="fas fa-gift"></i>
             </div>
             <h2 class="voucher-title">Tahniah! Anda Dapat Voucher</h2>
-            <div class="voucher-amount">RM93.10 Off</div>
+            <div class="voucher-amount">RM99.10 Off</div>
             <p class="voucher-description">Voucher ini sah selama 15 minit sahaja. Sila gunakan segera untuk pembelian anda!</p>
             <div class="voucher-timer" id="voucher-timer">
                 <div class="timer-unit">
@@ -2234,7 +2378,7 @@
             </button>
             <div class="flex items-center justify-center mt-4">
                 <p class="text-sm text-gray-600 mr-2">Jika butang tidak berfungsi, cuba lagi atau hubungi kami melalui WhatsApp:</p>
-                <a href="https://wa.me/601127412402?text=Hi,%20saya%20nak%20order%20jam%20TitanX-H11" target="_blank" class="text-green-500 hover:text-green-600">
+                <a href="https://wa.me/601127412402?text=Hi,%20saya%20nak%20tanya%20pasang%20jam%20TitanX-H11" target="_blank" class="text-green-500 hover:text-green-600">
                     <i class="fab fa-whatsapp text-2xl"></i>
                 </a>
             </div>
@@ -2243,6 +2387,12 @@
     
     <!-- Notification Container -->
     <div class="notification-container" id="notification-container"></div>
+    
+    <!-- Notification Sound -->
+    <audio id="notificationSound" preload="auto">
+        <source src="https://www.freesfx.co.uk/sound/16297_1460570779.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -2266,7 +2416,7 @@
         };
         
         // Voucher configuration
-        const VOUCHER_DISCOUNT = 93.10; // RM93.10 voucher discount (189 - 95.90)
+        const VOUCHER_DISCOUNT = 99.10; // RM99.10 voucher discount (189 - 89.90)
         const ORIGINAL_PRICE = 189.00; // RM189.00 original price
         
         // Cart Management
@@ -2276,13 +2426,42 @@
         let buyersToday = 27;
         let selectedColorIndex = 0;
         let selectedColorName = 'black';
-        const originalPrice = 189;
-        const salesPrice = 95.90;
+        const originalPrice = 189.00;
+        const salesPrice = 89.90; // Updated to RM89.90
+        const codFee = 7.00;
         const colorPrices = {
             'black': salesPrice,
             'green': salesPrice,
             'brown': salesPrice
         };
+
+        // Performance Optimizations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add lazy loading for images
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.loading = 'lazy';
+            });
+            
+            // Optimize font loading
+            const fontLink = document.createElement('link');
+            fontLink.rel = 'stylesheet';
+            fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap';
+            document.head.appendChild(fontLink);
+        });
+
+        // Debounce function for scroll events
+        function debounce(func, wait) {
+            let timeout;
+            return function() {
+                const context = this;
+                const args = arguments;
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    func.apply(context, args);
+                }, wait);
+            };
+        }
 
         // Initialize WhatsApp Reviews Carousel
         $(document).ready(function(){
@@ -2365,25 +2544,73 @@
             initWhatsAppReviewsScroll();
         });
 
-        // Video Section
+        // Video Section Functions
         function showVideo() {
             const videoSection = document.getElementById('videoSection');
-            videoSection.style.display = 'block';
             videoSection.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Video Play/Pause
-        document.getElementById('videoOverlay').addEventListener('click', function() {
+        // Video control functions
+        function togglePlayPause() {
             const video = document.getElementById('productVideo');
             const overlay = document.getElementById('videoOverlay');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const icon = playPauseBtn.querySelector('i');
             
             if (video.paused) {
                 video.play();
                 overlay.style.display = 'none';
+                icon.classList.remove('fa-play');
+                icon.classList.add('fa-pause');
             } else {
                 video.pause();
                 overlay.style.display = 'flex';
+                icon.classList.remove('fa-pause');
+                icon.classList.add('fa-play');
             }
+        }
+
+        function replayVideo() {
+            const video = document.getElementById('productVideo');
+            video.currentTime = 0;
+            video.play();
+            document.getElementById('videoOverlay').style.display = 'none';
+            
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const icon = playPauseBtn.querySelector('i');
+            icon.classList.remove('fa-play');
+            icon.classList.add('fa-pause');
+        }
+
+        function toggleMute() {
+            const video = document.getElementById('productVideo');
+            const muteBtn = document.getElementById('muteBtn');
+            const icon = muteBtn.querySelector('i');
+            
+            video.muted = !video.muted;
+            
+            if (video.muted) {
+                icon.classList.remove('fa-volume-up');
+                icon.classList.add('fa-volume-mute');
+            } else {
+                icon.classList.remove('fa-volume-mute');
+                icon.classList.add('fa-volume-up');
+            }
+        }
+
+        // Update video overlay click event
+        document.getElementById('videoOverlay').addEventListener('click', function() {
+            togglePlayPause();
+        });
+
+        // Update video ended event
+        document.getElementById('productVideo').addEventListener('ended', function() {
+            document.getElementById('videoOverlay').style.display = 'flex';
+            
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const icon = playPauseBtn.querySelector('i');
+            icon.classList.remove('fa-pause');
+            icon.classList.add('fa-play');
         });
 
         // Countdown Timer (30 minutes)
@@ -2509,11 +2736,11 @@
                 
                 // Apply bundle discount for 2 or more items (highest priority)
                 if (totalItems >= 2) {
-                    totalFinal = totalItems * 85.90;
+                    totalFinal = totalItems * 79.90; // Bundle price per item
                     totalDiscount = totalOriginal - totalFinal;
                     discountMessage = 'Bundle Offer (2+ Items):';
-                    discountNote = `<p>Bundle Price: RM85.90 per unit | Free Shipping</p>`;
-                    savingsMessage = `<p class="savings-message">Jimat RM${(ORIGINAL_PRICE - 85.90).toFixed(2)} per unit!</p>`;
+                    discountNote = `<p>Bundle Price: RM79.90 per unit | Free Shipping</p>`;
+                    savingsMessage = `<p class="savings-message">Jimat RM${(ORIGINAL_PRICE - 79.90).toFixed(2)} per unit!</p>`;
                 } 
                 // Apply voucher discount if no bundle
                 else if (voucherClaimed) {
@@ -2525,11 +2752,11 @@
                 } 
                 // Apply single item discount
                 else {
-                    totalFinal = totalItems * 95.90;
+                    totalFinal = totalItems * 89.90; // Updated to RM89.90
                     totalDiscount = totalOriginal - totalFinal;
                     discountMessage = 'Harga Promosi:';
-                    discountNote = `<p>Special Price: RM95.90 per unit</p>`;
-                    savingsMessage = `<p class="savings-message">Jimat RM${(ORIGINAL_PRICE - 95.90).toFixed(2)} per unit!</p>`;
+                    discountNote = `<p>Special Price: RM89.90 per unit</p>`;
+                    savingsMessage = `<p class="savings-message">Jimat RM${(ORIGINAL_PRICE - 89.90).toFixed(2)} per unit!</p>`;
                 }
                 
                 // Update cart items display
@@ -2539,14 +2766,14 @@
                     let itemDiscountNote = '';
                     
                     if (totalItems >= 2) {
-                        itemFinal = 85.90;
-                        itemDiscountNote = `<p>Bundle Price: RM85.90</p>`;
+                        itemFinal = 79.90;
+                        itemDiscountNote = `<p>Bundle Price: RM79.90</p>`;
                     } else if (voucherClaimed) {
                         itemFinal = ORIGINAL_PRICE - VOUCHER_DISCOUNT;
                         itemDiscountNote = `<p class="voucher-note">Voucher Applied: RM${VOUCHER_DISCOUNT.toFixed(2)}</p>`;
                     } else {
-                        itemFinal = 95.90;
-                        itemDiscountNote = `<p>Special Price: RM95.90</p>`;
+                        itemFinal = 89.90; // Updated to RM89.90
+                        itemDiscountNote = `<p>Special Price: RM89.90</p>`;
                     }
                     
                     const colorName = item.color === 'black' ? 'Hitam' : 
@@ -2726,14 +2953,14 @@
             
             // Apply bundle pricing for 2 or more items
             if (totalItems >= 2) {
-                totalAmount = totalItems * 85.90; // Bundle price per item
+                totalAmount = totalItems * 79.90; // Bundle price per item
             } else {
                 // Single item pricing
                 const voucherClaimed = localStorage.getItem('voucherClaimed') === 'true';
                 if (voucherClaimed) {
                     totalAmount = totalItems * (ORIGINAL_PRICE - VOUCHER_DISCOUNT);
                 } else {
-                    totalAmount = totalItems * 95.90;
+                    totalAmount = totalItems * 89.90; // Updated to RM89.90
                 }
             }
             
@@ -3130,7 +3357,7 @@
             formData.append('billDescription', `Pembelian ${orderData.quantity} unit ${orderData.product}`);
             formData.append('billPriceSetting', 1); // Fixed amount
             formData.append('billPayorInfo', 1); // Require payer information
-            formData.append('billAmount', amount * 100); // Convert to cents (RM95.90 = 9590)
+            formData.append('billAmount', amount * 100); // Convert to cents (RM89.90 = 8990)
             formData.append('billReturnUrl', TOYYIBPAY_CONFIG.returnUrl);
             formData.append('billCallbackUrl', TOYYIBPAY_CONFIG.callbackUrl);
             formData.append('billExternalReferenceNo', billNo);
@@ -3238,10 +3465,10 @@
             
             if (voucherClaimed !== 'true') {
                 localStorage.setItem('voucherClaimed', 'true');
-                showNotification('Voucher berjaya dituntung! RM93.10 akan dipotong semasa pembayaran.', 'success');
+                showNotification('Voucher berjaya diclaim! RM99.10 akan dipotong semasa pembayaran.', 'success');
                 updateCart(); // Refresh cart display
             } else {
-                showNotification('Anda telah menuntut voucher ini sebelum ini.', 'info');
+                showNotification('Anda telah claim voucher ini sebelum ini.', 'info');
             }
             
             voucherPopup.classList.remove('active');
@@ -3318,6 +3545,76 @@
         }
 
         // ====================================
+        //      SOCIAL PROOF NOTIFICATIONS
+        // ====================================
+        const socialProofNotifications = [
+            "Ahmad Nazaruddin - Johor, order TitanX-H11 Hitam, Payment Online transfer 3 Jam 12 minutes yang lepas",
+            "Muhammad Faris - Selangor, order TitanX-H11 Hijau, Payment Online transfer 1 Jam 45 minutes yang lepas",
+            "Abdul Rahman - Pulau Pinang, order TitanX-H11 Hitam, Payment Online transfer 2 Jam 30 minutes yang lepas",
+            "Ismail  Yusof - Kedah, order TitanX-H11 Coklat, Payment Online transfer 4 Jam 5 minutes yang lepas",
+            "Mohd Zain - Perak, order TitanX-H11 Hitam, Payment Online transfer 30 minutes yang lepas",
+            "Rashid  Ahmad - Negeri Sembilan, order TitanX-H11 Hijau, Payment Online transfer 2 Jam 15 minutes yang lepas",
+            "Hassan Omar - Melaka, order TitanX-H11 Hitam, Payment Online transfer 5 Jam 20 minutes yang lepas",
+            "Zainal Abidin - Pahang, order TitanX-H11 Coklat, Payment Online transfer 1 Jam 10 minutes yang lepas",
+            "Azhar  Sulaiman - Terengganu, order TitanX-H11 Hitam, Payment Online transfer 3 Jam 45 minutes yang lepas",
+            "Yusof  Ismail - Kelantan, order TitanX-H11 Hijau, Payment Online transfer 2 Jam 25 minutes yang lepas",
+            "Fauzi Hassan - Sabah, order TitanX-H11 Hitam, Payment Online transfer 4 Jam 30 minutes yang lepas",
+            "Khalid Rahman - Sarawak, order TitanX-H11 Coklat, Payment Online transfer 1 Jam 55 minutes yang lepas",
+            "Salleh Musa - Kuala Lumpur, order TitanX-H11 Hitam, Payment Online transfer 45 minutes yang lepas",
+            "Osman  Bakar - Putrajaya, order TitanX-H11 Hijau, Payment Online transfer 2 Jam 40 minutes yang lepas",
+            "Razak Hashim - Labuan, order TitanX-H11 Hitam, Payment Online transfer 3 Jam 5 minutes yang lepas"
+        ];
+
+        // Function to show social proof notification
+        function showSocialProofNotification() {
+            const randomNotification = socialProofNotifications[Math.floor(Math.random() * socialProofNotifications.length)];
+            
+            // Play notification sound
+            const notificationSound = document.getElementById('notificationSound');
+            if (notificationSound) {
+                notificationSound.currentTime = 0;
+                notificationSound.play().catch(e => console.log("Audio play failed:", e));
+            }
+            
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = 'social-proof-notification';
+            notification.innerHTML = `
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="notification-content">
+                    <p>${randomNotification}</p>
+                </div>
+            `;
+            
+            // Add notification to container
+            const container = document.getElementById('notification-container');
+            container.appendChild(notification);
+            
+            // Remove notification after 5 seconds
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 5000);
+        }
+
+        // Schedule social proof notifications
+        function scheduleSocialProofNotifications() {
+            // Show first notification after 5 seconds
+            setTimeout(showSocialProofNotification, 5000);
+            
+            // Then show notifications at random intervals between 15-45 seconds
+            setInterval(() => {
+                showSocialProofNotification();
+            }, Math.floor(Math.random() * 30000) + 15000);
+        }
+
+        // ====================================
         //      LOADING OVERLAY FUNCTIONS
         // ====================================
         function showLoading() {
@@ -3374,6 +3671,7 @@
             startCountdown();
             simulateLiveUpdates();
             updateCart();
+            scheduleSocialProofNotifications();
             
             // Fix for anchor link handling that might be causing the error
             document.querySelectorAll('a[href]').forEach(anchor => {
@@ -3405,15 +3703,15 @@
                 });
             });
 
-            // Navbar background on scroll
-            window.addEventListener('scroll', () => {
+            // Optimize scroll event listeners with debounce
+            window.addEventListener('scroll', debounce(function() {
                 const navbar = document.querySelector('.navbar');
                 if (window.scrollY > 50) {
                     navbar.style.background = 'rgba(15, 23, 42, 0.98)';
                 } else {
                     navbar.style.background = 'rgba(15, 23, 42, 0.95)';
                 }
-            });
+            }, 100));
             
             // Add real-time validation for form fields
             document.getElementById('customerName').addEventListener('blur', function() {
@@ -3477,5 +3775,4 @@
         });
     </script>
 </body>
-
 </html>
