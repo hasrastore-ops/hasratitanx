@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TitanX-H11 - Jam Tangan Pintar Generasi Terbaru</title>
+    <title>TitanX-H11 - Jam Tangan Pintar Premium</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
@@ -11,7 +11,7 @@
     
     <!-- Preload critical resources -->
     <link rel="preload" href="https://cdn.jsdelivr.net/gh/hasrastore-ops/titanmedia@v1.0/d1.webp" as="image">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" as="style">
     
     <!-- Meta Pixel Code -->
     <script>
@@ -65,19 +65,19 @@
     
     <style>
         :root {
-            --primary-color: #8b5cf6;
-            --secondary-color: #7c3aed;
-            --accent-color: #f59e0b;
-            --text-light: #e5e7eb;
-            --text-dark: #9ca3af;
-            --bg-dark: #0f172a;
-            --bg-card: #1e293b;
-            --bg-hover: #334155;
-            --midnight-navy: #0C1F3D;
-            --royal-sapphire: #1E3A8A;
-            --antique-gold: #D4AF37;
-            --platinum-silver: #C0C0C0;
-            --voucher-blue: #0c2e5a;
+            --primary-color: #E5D4B1; /* White Gold */
+            --secondary-color: #D4AF37; /* Rich Gold */
+            --accent-color: #D4AF37;
+            --text-light: #F5F5F5;
+            --text-dark: #A0A0A0;
+            --bg-dark: #1A1A1A;
+            --bg-card: #2A2A2A;
+            --bg-hover: #3A3A3A;
+            --nude-light: #E5D0AC;
+            --nude-medium: #D4B896;
+            --nude-dark: #C19A6B;
+            --premium-dark: #222222;
+            --premium-light: #F8F8F8;
         }
 
         * {
@@ -87,25 +87,28 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Montserrat', 'Playfair Display', serif;
             background: var(--bg-dark);
             color: var(--text-light);
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
         /* Header Styles */
         .navbar {
-            background: rgba(15, 23, 42, 0.95);
+            background: rgba(26, 26, 26, 0.95);
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
             transition: all 0.3s ease;
             padding: 15px 0;
+            border-bottom: 1px solid var(--nude-light);
         }
 
         .navbar-brand {
             font-weight: 700;
             font-size: 1.5rem;
             color: var(--primary-color);
+            font-family: 'Playfair Display', serif;
         }
 
         .nav-link {
@@ -120,18 +123,20 @@
         }
 
         .btn-primary-custom {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--nude-light), var(--nude-medium));
             border: none;
             padding: 12px 25px;
             font-weight: 600;
             border-radius: 50px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 4px 15px rgba(229, 212, 175, 0.3);
+            color: var(--bg-dark);
         }
 
         .btn-primary-custom:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 6px 20px rgba(229, 212, 175, 0.4);
+            background: linear-gradient(135deg, var(--nude-medium), var(--nude-dark));
         }
 
         /* Cart Badge */
@@ -140,7 +145,7 @@
             top: -8px;
             right: -8px;
             background: var(--accent-color);
-            color: white;
+            color: var(--bg-dark);
             border-radius: 50%;
             width: 20px;
             height: 20px;
@@ -152,65 +157,167 @@
         }
 
         /* Hero Section */
-        .hero-section {
-            padding: 100px 0 80px;
-            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
-            position: relative;
-            overflow: hidden;
-        }
+.hero-section {
+    padding: 100px 0 80px;
+    background: linear-gradient(135deg, var(--premium-dark) 0%, #333333 100%);
+    position: relative;
+    overflow: hidden;
+}
 
-        .hero-content h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            color: white;
-            line-height: 1.2;
-            animation: fadeInUp 0.8s ease;
-        }
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
 
-        .hero-content p {
-            font-size: 1.25rem;
-            margin-bottom: 30px;
-            color: rgba(255, 255, 255, 0.9);
-            animation: fadeInUp 0.8s ease 0.2s;
-            animation-fill-mode: both;
-        }
+.hero-text-wrapper {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-        .hero-image {
-            position: relative;
-            animation: float 3s ease-in-out infinite;
-        }
+.hero-text-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
 
-        .hero-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 20px;
-        }
+.text-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://sc04.alicdn.com/kf/Ha7c5696594d3456085345d4aa0a5b5bbr/285412054/Ha7c5696594d3456085345d4aa0a5b5bbr.jpg') center/cover;
+    transform: scale(1.1); /* Slightly scale to prevent edges */
+    z-index: 1;
+}
 
-        .floating-badges {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 10;
-        }
+.text-background::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.7) 0%, rgba(51, 51, 51, 0.6) 100%);
+    z-index: 2;
+}
 
-        .badge-float {
-            background: var(--bg-card);
-            color: var(--text-light);
-            padding: 8px 15px;
-            border-radius: 50px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            animation: slideInRight 0.8s ease;
-            border: 1px solid var(--bg-hover);
-        }
+.text-content {
+    position: relative;
+    z-index: 3;
+    padding: 40px;
+    background: rgba(26, 26, 26, 0.3);
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(229, 212, 175, 0.2);
+}
 
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text-light);
+    line-height: 1.2;
+    animation: fadeInUp 0.8s ease;
+    font-family: 'Playfair Display', serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.95);
+    animation: fadeInUp 0.8s ease 0.2s;
+    animation-fill-mode: both;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.hero-image {
+    position: relative;
+    animation: float 3s ease-in-out infinite;
+    z-index: 2;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--nude-light);
+}
+
+.floating-badges {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
+.badge-float {
+    background: var(--bg-card);
+    color: var(--text-light);
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: slideInRight 0.8s ease;
+    border: 1px solid var(--nude-light);
+    backdrop-filter: blur(5px);
+}
+
+.stock-counter {
+    background: rgba(229, 212, 175, 0.15);
+    border: 1px solid rgba(229, 212, 175, 0.3);
+    color: var(--nude-light);
+    padding: 12px 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    font-weight: 600;
+    backdrop-filter: blur(5px);
+    display: inline-block;
+}
+
+/* Mobile responsiveness */
+@media(max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-section {
+        padding: 80px 0 60px;
+    }
+    
+    .text-content {
+        padding: 30px 20px;
+    }
+}
+
+@media(max-width: 576px) {
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .text-content {
+        padding: 25px 15px;
+    }
+    
+    .floating-badges {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .badge-float {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+}
         /* Stock Counter */
         .stock-counter {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            color: #ef4444;
+            background: rgba(229, 212, 175, 0.1);
+            border: 1px solid rgba(229, 212, 175, 0.3);
+            color: var(--nude-light);
             padding: 10px 20px;
             border-radius: 10px;
             margin: 20px 0;
@@ -221,7 +328,7 @@
         .trust-indicators {
             background: var(--bg-card);
             padding: 20px 0;
-            border-bottom: 1px solid var(--bg-hover);
+            border-bottom: 1px solid var(--nude-light);
         }
 
         .trust-item {
@@ -254,6 +361,7 @@
             height: auto;
             display: block;
             transition: transform 0.3s ease;
+            border: 1px solid var(--nude-light);
         }
 
         .feature-image:hover {
@@ -275,6 +383,7 @@
             background: #000;
             border-radius: 20px;
             overflow: hidden;
+            border: 2px solid var(--nude-light);
         }
 
         .video-overlay {
@@ -294,7 +403,7 @@
         .play-button {
             width: 80px;
             height: 80px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(229, 212, 175, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -303,12 +412,12 @@
         }
 
         .play-button:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(229, 212, 175, 0.3);
             transform: scale(1.1);
         }
 
         .play-button i {
-            color: white;
+            color: var(--nude-light);
             font-size: 2.5rem;
         }
 
@@ -326,7 +435,7 @@
 
         .video-control-btn {
             background: rgba(0, 0, 0, 0.5);
-            color: white;
+            color: var(--nude-light);
             border: none;
             width: 50px;
             height: 50px;
@@ -355,7 +464,7 @@
             padding: 30px;
             margin-bottom: 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--bg-hover);
+            border: 1px solid var(--nude-light);
         }
 
         .testimonial-stars {
@@ -383,8 +492,8 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(139, 92, 246, 0.8);
-            color: white;
+            background: rgba(229, 212, 175, 0.8);
+            color: var(--bg-dark);
             border: none;
             width: 50px;
             height: 50px;
@@ -399,7 +508,7 @@
         }
 
         .scroll-btn:hover {
-            background: rgba(139, 92, 246, 1);
+            background: rgba(229, 212, 175, 1);
             transform: translateY(-50%) scale(1.1);
         }
 
@@ -448,6 +557,7 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             cursor: pointer;
             transition: transform 0.3s ease;
+            border: 2px solid var(--nude-light);
         }
 
         .whatsapp-review:hover {
@@ -505,8 +615,20 @@
         /* Pricing Section */
         .pricing-section {
             padding: 80px 0;
-            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+            background: linear-gradient(135deg, var(--premium-dark) 0%, #333333 100%);
             position: relative;
+        }
+
+        .pricing-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://cdn.jsdelivr.net/gh/hasrastore-ops/titanmedia@v1.0/texture-bg.jpg') center/cover;
+            opacity: 0.1;
+            z-index: -1;
         }
 
         .pricing-card {
@@ -516,12 +638,12 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
             position: relative;
             overflow: hidden;
-            border: 1px solid var(--bg-hover);
+            border: 1px solid var(--nude-light);
         }
 
         .price-tag {
             font-size: 3rem;
-            font-weight: 800;
+            font-weight: 700;
             color: var(--primary-color);
             margin: 20px 0;
         }
@@ -537,7 +659,7 @@
             top: 20px;
             right: 20px;
             background: var(--accent-color);
-            color: white;
+            color: var(--bg-dark);
             padding: 10px 20px;
             border-radius: 50px;
             font-weight: 700;
@@ -604,7 +726,7 @@
             color: var(--text-light);
             padding: 40px 0;
             text-align: center;
-            border-top: 1px solid var(--bg-hover);
+            border-top: 1px solid var(--nude-light);
         }
 
         .countdown-timer {
@@ -619,7 +741,7 @@
             border-radius: 10px;
             padding: 15px 20px;
             min-width: 80px;
-            border: 1px solid var(--bg-hover);
+            border: 1px solid var(--nude-light);
         }
 
         .countdown-value {
@@ -671,7 +793,7 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
-            border: 1px solid var(--bg-hover);
+            border: 1px solid var(--nude-light);
             font-size: 14px;
         }
 
@@ -688,21 +810,22 @@
         }
 
         .order-button {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
+            background: linear-gradient(135deg, var(--nude-light), var(--nude-medium));
+            color: var(--bg-dark);
             border: none;
             padding: 15px 25px;
             border-radius: 50px;
             font-weight: 700;
             font-size: 16px;
-            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 4px 20px rgba(229, 212, 175, 0.4);
             transition: all 0.3s ease;
             cursor: pointer;
         }
 
         .order-button:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 30px rgba(139, 92, 246, 0.6);
+            box-shadow: 0 6px 30px rgba(229, 212, 175, 0.6);
+            background: linear-gradient(135deg, var(--nude-medium), var(--nude-dark));
         }
 
         .order-tooltip {
@@ -717,7 +840,7 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
-            border: 1px solid var(--bg-hover);
+            border: 1px solid var(--nude-light);
             font-size: 14px;
         }
 
@@ -746,7 +869,7 @@
         .cart-header {
             background: var(--bg-dark);
             padding: 20px;
-            border-bottom: 1px solid var(--bg-hover);
+            border-bottom: 1px solid var(--nude-light);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -771,7 +894,7 @@
             bottom: 0;
             background: var(--bg-dark);
             padding: 20px;
-            border-top: 1px solid var(--bg-hover);
+            border-top: 1px solid var(--nude-light);
         }
 
         .cart-overlay {
@@ -797,7 +920,7 @@
 
         .fact-item {
             margin-bottom: 15px;
-            border: 1px solid var(--bg-hover);
+            border: 1px solid var(--nude-light);
             border-radius: 10px;
             overflow: hidden;
         }
@@ -824,7 +947,7 @@
 
         .fact-title i {
             margin-right: 10px;
-            color: var(--primary-color);
+            color: var(--accent-color);
         }
 
         .fact-icon {
@@ -871,6 +994,7 @@
             border-radius: 20px;
             padding: 30px;
             position: relative;
+            border: 1px solid var(--nude-light);
         }
 
         .close-modal {
@@ -898,7 +1022,7 @@
             width: 100%;
             padding: 12px;
             background: var(--bg-dark);
-            border: 1px solid var(--bg-hover);
+            border: 1px solid var(--nude-light);
             border-radius: 8px;
             color: white;
         }
@@ -906,7 +1030,7 @@
         .form-control:focus {
             outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+            box-shadow: 0 0 0 3px rgba(229, 212, 175, 0.2);
         }
 
         .error-message {
@@ -1193,6 +1317,7 @@
             width: 90%;
             transform: scale(0.9);
             transition: transform 0.3s ease;
+            border: 1px solid var(--nude-light);
         }
         
         .loading-overlay.active .loading-content {
@@ -1203,7 +1328,7 @@
             display: inline-block;
             width: 60px;
             height: 60px;
-            border: 6px solid rgba(139, 92, 246, 0.2);
+            border: 6px solid rgba(229, 212, 175, 0.2);
             border-radius: 50%;
             border-top-color: var(--primary-color);
             animation: spin 1s ease-in-out infinite;
@@ -1281,6 +1406,7 @@
             transform: scale(0.9);
             transition: transform 0.3s ease;
             text-align: center;
+            border: 1px solid var(--nude-light);
         }
         
         .payment-redirect-modal.active .payment-redirect-modal-content {
@@ -1321,6 +1447,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             transform: scale(0.9);
             transition: transform 0.3s;
+            border: 1px solid var(--nude-light);
         }
         
         .voucher-popup.active .voucher-content {
@@ -1426,6 +1553,7 @@
             align-items: center;
             animation: slideIn 0.5s ease-out;
             position: relative;
+            border: 1px solid var(--nude-light);
         }
         
         @keyframes slideIn {
@@ -1493,6 +1621,7 @@
             text-align: center;
             position: relative;
             animation: fadeInUp 0.5s ease;
+            border: 1px solid var(--nude-light);
         }
 
         .order-success-icon {
@@ -1538,7 +1667,7 @@
         }
 
         .order-total-row {
-            border-top: 1px solid var(--bg-hover);
+            border-top: 1px solid var(--nude-light);
             padding-top: 10px;
             margin-top: 10px;
         }
@@ -1609,6 +1738,7 @@
             text-align: center;
             position: relative;
             animation: fadeInUp 0.5s ease;
+            border: 1px solid var(--nude-light);
         }
 
         .online-payment-success-icon {
@@ -1654,7 +1784,7 @@
         }
 
         .online-payment-total-row {
-            border-top: 1px solid var(--bg-hover);
+            border-top: 1px solid var(--nude-light);
             padding-top: 10px;
             margin-top: 10px;
         }
@@ -1665,8 +1795,8 @@
         }
 
         .online-payment-cta {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
+            background: linear-gradient(135deg, var(--nude-light), var(--nude-medium));
+            color: var(--bg-dark);
             border: none;
             padding: 15px 30px;
             border-radius: 50px;
@@ -1682,7 +1812,7 @@
 
         .online-payment-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 6px 20px rgba(229, 212, 175, 0.4);
         }
 
         .close-online-payment-confirmation {
@@ -1708,6 +1838,7 @@
             margin-bottom: 10px;
             animation: slideInRight 0.5s ease-out;
             transition: opacity 0.3s ease;
+            border: 1px solid var(--nude-light);
         }
 
         .notification-icon {
@@ -1721,13 +1852,232 @@
             font-size: 0.9rem;
             color: var(--text-light);
         }
+        
+        /* Security Badges Section */
+        .security-badges {
+            padding: 40px 0;
+            background: var(--bg-card);
+            text-align: center;
+            border-bottom: 1px solid var(--nude-light);
+        }
+        
+        .security-badges h3 {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .badges-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .badge-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 120px;
+        }
+        
+        .badge-item i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+        
+        .badge-item span {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        /* Professional Header Enhancement */
+        .professional-header {
+            background: var(--bg-card);
+            padding: 15px 0;
+            border-bottom: 1px solid var(--nude-light);
+        }
+        
+        .professional-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .contact-info {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .contact-info a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: var(--primary-color);
+        }
+        
+        .contact-info i {
+            margin-right: 5px;
+            color: var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Enhanced Testimonials */
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+            border: 1px solid var(--nude-light);
+        }
+        
+        .author-info h6 {
+            margin: 0;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+        
+        .author-info small {
+            color: var(--text-dark);
+        }
+        
+        .testimonial-date {
+            color: var(--text-dark);
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+        
+        /* Product Quality Indicators */
+        .quality-indicators {
+            padding: 40px 0;
+            background: var(--bg-dark);
+        }
+        
+        .quality-indicators .container {
+            text-align: center;
+        }
+        
+        .quality-indicators h3 {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .indicators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .indicator-item {
+            background: var(--bg-card);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid var(--nude-light);
+        }
+        
+        .indicator-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .indicator-item i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+        
+        .indicator-item h4 {
+            color: var(--text-light);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .indicator-item p {
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+        
+        /* Premium Section Divider */
+        .premium-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--nude-light), transparent);
+            margin: 40px 0;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Exclusive Banner */
+        .exclusive-banner {
+            background: linear-gradient(135deg, var(--nude-light), var(--nude-medium));
+            color: var(--bg-dark);
+            padding: 20px;
+            text-align: center;
+            margin: 30px 0;
+            border-radius: 10px;
+        }
+        
+        .exclusive-banner h3 {
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .exclusive-banner p {
+            margin: 0;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
+    <!-- Professional Header -->
+    <div class="professional-header">
+        <div class="container">
+            <div class="contact-info">
+                <a href="tel:+601127412402"><i class="fas fa-phone"></i> +6011-27412402</a>
+                <a href="mailto:support@hasrastore.my"><i class="fas fa-envelope"></i> support@hasrastore.my</a>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#"><i class="fas fa-clock"></i> HASRASTORE</a>
+            <a class="navbar-brand" href="#"> TitanX/Hasrastore </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -1747,38 +2097,43 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 hero-content">
-                    <h1>TitanX-H11: Dibina Untuk Ketahanan, Direka Untuk Gaya.</h1>
-                    <p>Pantau kesihatan, kekal aktif, dan nampak bergaya, semua dalam satu jam pintar lasak dengan rekaan yang memukau.</p>
-                    <div class="stock-counter">
-                        <i class="fas fa-fire me-2"></i> <span id="stockLeft">13</span> unit tinggal - Jangan ketinggalan!
-                    </div>
-                    <div class="d-flex flex-column flex-sm-row gap-3">
-                        <button class="btn btn-light btn-lg px-4 py-3" onclick="scrollToPricing()">
-                            <i class="fas fa-shopping-cart me-2"></i> Beli Sekarang - Jimat RM99.10
-                        </button>
-                        <button class="btn btn-outline-light btn-lg px-4 py-3" onclick="showVideo()">
-                            <i class="fas fa-play-circle me-2"></i> Lihat Video
-                        </button>
-                    </div>
-                    <div class="mt-4">
-                        <small class="text-white-50"><i class="fas fa-truck me-2"></i> Penghantaran Percuma | Warranty 1 Bulan</small>
-                    </div>
-                </div>
-                <div class="col-lg-6 hero-image">
-                    <img src="https://cdn.jsdelivr.net/gh/hasrastore-ops/titanmedia@v1.0/d1.webp" alt="TitanX-H11 Smartwatch" class="img-fluid">
-                    <div class="floating-badges">
-                        <div class="badge-float"><i class="fas fa-star text-warning"></i> 4.9/5 Rating</div>
-                        <div class="badge-float"><i class="fas fa-users text-info"></i> <span id="buyersToday">26</span> pembeli hari ini</div>
+   <!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 hero-content">
+                <div class="hero-text-wrapper">
+                    <div class="text-background"></div>
+                    <div class="text-content">
+                        <h1>TitanX-H11: Kualiti Premium Untuk Gaya Hidup Moden</h1>
+                        <p>Pantau kesihatan dengan tepat, kekal aktif, dan nampak bergaya dengan jam tangan pintar premium kami yang direka untuk ketahanan dan prestasi.</p>
+                        <div class="stock-counter">
+                            <i class="fas fa-fire me-2"></i> <span id="stockLeft">13</span> unit tinggal - Jangan ketinggalan!
+                        </div>
+                        <div class="d-flex flex-column flex-sm-row gap-3">
+                            <button class="btn btn-light btn-lg px-4 py-3" onclick="scrollToPricing()">
+                                <i class="fas fa-shopping-cart me-2"></i> Beli Sekarang - Jimat RM99.10
+                            </button>
+                            <button class="btn btn-outline-light btn-lg px-4 py-3" onclick="showVideo()">
+                                <i class="fas fa-play-circle me-2"></i> Lihat Video
+                            </button>
+                        </div>
+                        <div class="mt-4">
+                            <small class="text-white-50"><i class="fas fa-truck me-2"></i> Penghantaran Percuma | Warranty 1 Bulan</small>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="col-lg-6 hero-image">
+                <img src="https://cdn.jsdelivr.net/gh/hasrastore-ops/titanmedia@v1.0/d1.webp" alt="TitanX-H11 Smartwatch" class="img-fluid">
+                <div class="floating-badges">
+                    <div class="badge-float"><i class="fas fa-star text-warning"></i> 4.9/5 Rating</div>
+                    <div class="badge-float"><i class="fas fa-users text-info"></i> <span id="buyersToday">26</span> pembeli hari ini</div>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Trust Indicators -->
     <section class="trust-indicators">
@@ -1799,6 +2154,35 @@
                 <div class="col-6 col-md-3 trust-item">
                     <i class="fas fa-bolt"></i>
                     <span>Penghantaran Pantas 1-3 Hari </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Badges Section -->
+    <section class="security-badges">
+        <div class="container">
+            <h3>Pembayaran Selamat & Terjamin</h3>
+            <div class="badges-container">
+                <div class="badge-item">
+                    <i class="fas fa-lock"></i>
+                    <span>SSL Encryption</span>
+                </div>
+                <div class="badge-item">
+                    <i class="fas fa-credit-card"></i>
+                    <span>FPX Payment</span>
+                </div>
+                <div class="badge-item">
+                    <i class="fas fa-university"></i>
+                    <span>Bank Transfer</span>
+                </div>
+                <div class="badge-item">
+                    <i class="fas fa-qrcode"></i>
+                    <span>QR Payment</span>
+                </div>
+                <div class="badge-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Data Protection</span>
                 </div>
             </div>
         </div>
@@ -1861,7 +2245,45 @@
         </div>
     </section>
 
-    
+    <!-- Product Quality Indicators -->
+    <section class="quality-indicators">
+        <div class="container">
+            <h3>Kualiti & Kebolehpercayaan</h3>
+            <div class="indicators-grid">
+                <div class="indicator-item">
+                    <i class="fas fa-battery-full"></i>
+                    <h4>Bateri Tahan Lama</h4>
+                    <p>Sehingga 7 hari penggunaan normal dengan satu cas penuh</p>
+                </div>
+                <div class="indicator-item">
+                    <i class="fas fa-tint"></i>
+                    <h4>Tahan Air</h4>
+                    <p>Perlindungan IP65 untuk aktiviti harian dan sukan</p>
+                </div>
+                <div class="indicator-item">
+                    <i class="fas fa-heartbeat"></i>
+                    <h4>Pemantauan Kesihatan</h4>
+                    <p>Sensor canggih untuk kadar denyutan jantung dan oksigen darah</p>
+                </div>
+                <div class="indicator-item">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h4>Kompatibiliti Universal</h4>
+                    <p>Sesuai dengan iOS dan Android</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exclusive Banner -->
+    <div class="container">
+        <div class="exclusive-banner">
+            <h3>Koleksi Eksklusif Edisi Terhad</h3>
+            <p>Dapatkan TitanX-H11 dengan rekaan premium yang hanya tersedia untuk pelanggan istimewa</p>
+        </div>
+    </div>
+
+    <!-- Premium Divider -->
+    <div class="premium-divider"></div>
 
     <!-- Testimonials Section -->
     <section class="testimonials-section" id="testimonials">
@@ -1886,6 +2308,7 @@
                             <div>
                                 <h6 class="mb-0 text-white">Ahmad Razif</h6>
                                 <small class="text-muted">Pembeli Disahkan</small>
+                                <div class="testimonial-date">2 minggu lepas</div>
                             </div>
                         </div>
                     </div>
@@ -1905,6 +2328,7 @@
                             <div>
                                 <h6 class="mb-0 text-white">Nurhaliza</h6>
                                 <small class="text-muted">Pembeli Disahkan</small>
+                                <div class="testimonial-date">1 bulan lepas</div>
                             </div>
                         </div>
                     </div>
@@ -1924,6 +2348,7 @@
                             <div>
                                 <h6 class="mb-0 text-white">Mohd Danial</h6>
                                 <small class="text-muted">Pembeli Disahkan</small>
+                                <div class="testimonial-date">3 minggu lepas</div>
                             </div>
                         </div>
                     </div>
@@ -2230,11 +2655,11 @@
                     <label class="form-label text-white">Cara Pembayaran</label>
                     <div class="payment-option" onclick="selectPayment('online')">
                         <input type="radio" name="payment" value="online" id="onlinePayment" checked>
-                        <label for="onlinePayment">Pembayaran Online</label>
+                        <label for="onlinePayment">Pembayaran Online-FPX, mahu QR sila tekan Button Whatsapp</label>
                     </div>
                     <div class="payment-option" onclick="selectPayment('cod')">
                         <input type="radio" name="payment" value="cod" id="codPayment">
-                        <label for="codPayment">Bayar pada Courier (COD) - Cas tambahan RM7 (Tidak tersedia untuk Sabah & Sarawak)</label>
+                        <label for="codPayment">Bayar bila Barang Sampai (COD) - Cas tambahan RM7 (Tidak tersedia untuk Sabah & Sarawak)</label>
                     </div>
                 </div>
                 
@@ -2356,7 +2781,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4">
-                    <h5 class="mb-3">HASRASTORE</h5>
+                    <h5 class="mb-3" style="color: var(--primary-color);">HASRASTORE</h5>
                     <p>Jam tangan pintar generasi terbaru untuk gaya hidup moden.</p>
                     <div class="mt-3">
                         <a href="#" class="text-light me-3"><i class="fab fa-facebook fa-lg"></i></a>
@@ -2365,17 +2790,17 @@
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <h5 class="mb-3">Hubungi</h5>
+                    <h5 class="mb-3" style="color: var(--primary-color);">Hubungi</h5>
                     <p><i class="fas fa-envelope me-2"></i> support@hasrastore.my</p>
                     <p><i class="fas fa-phone me-2"></i> +6011-27412402</p>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <h5 class="mb-3">Maklumat</h5>
+                    <h5 class="mb-3" style="color: var(--primary-color);">Maklumat</h5>
                     <p><i class="fas fa-map-marker-alt me-2"></i> Kuala Lumpur, Malaysia</p>
                     <p><i class="fas fa-clock me-2"></i> Isnin - Jumaat: 9AM - 6PM</p>
                 </div>
             </div>
-            <hr style="border-color: var(--bg-hover);">
+            <div class="premium-divider"></div>
             <div class="text-center">
                 <p class="mb-0 text-muted">&copy; 2024 HASRASTORE. Hak cipta terpelihara.</p>
             </div>
@@ -2433,10 +2858,10 @@
     <!-- Payment Redirect Modal -->
     <div id="paymentRedirectModal" class="payment-redirect-modal">
         <div class="payment-redirect-modal-content">
-            <i class="fas fa-credit-card text-primary text-5xl mb-4"></i>
+            <i class="fas fa-credit-card text-primary text-5xl mb-4" style="color: var(--primary-color);"></i>
             <h3 class="text-2xl font-bold mb-2">Pembayaran Dalam Talian</h3>
             <p class="mb-6">Klik butang di bawah untuk meneruskan ke pembayaran.</p>
-            <button id="manualRedirectBtn" class="btn btn-primary px-6 py-2 rounded-lg font-bold hover:bg-primary-600 transition mb-4">
+            <button id="manualRedirectBtn" class="btn btn-primary px-6 py-2 rounded-lg font-bold hover:bg-primary-600 transition mb-4" style="background: var(--primary-color); color: var(--bg-dark);">
                 Teruskan Pembayaran
             </button>
             <div class="flex items-center justify-center mt-4">
@@ -2509,7 +2934,7 @@
             // Optimize font loading
             const fontLink = document.createElement('link');
             fontLink.rel = 'stylesheet';
-            fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap';
+            fontLink.href = 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap';
             document.head.appendChild(fontLink);
         });
 
@@ -3345,7 +3770,7 @@
                 content: "🆕 **PESANAN BARU HASRASTORE** 🆕",
                 embeds: [{
                     title: "Order Details",
-                    color: 0x8b5cf6, // Purple color matching the site theme
+                    color: 0xE5D4B1, // White gold color matching the site theme
                     fields: [
                         {
                             name: "Status Pembayaran",
@@ -3802,7 +4227,7 @@
                     document.getElementById('stockLeft').textContent = stockLeft;
                     
                     if (stockLeft < 10) {
-                        document.querySelector('.stock-counter').style.background = 'rgba(239, 68, 68, 0.2)';
+                        document.querySelector('.stock-counter').style.background = 'rgba(229, 212, 175, 0.2)';
                     }
                 }
             }, 5000);
@@ -3849,9 +4274,9 @@
             window.addEventListener('scroll', debounce(function() {
                 const navbar = document.querySelector('.navbar');
                 if (window.scrollY > 50) {
-                    navbar.style.background = 'rgba(15, 23, 42, 0.98)';
+                    navbar.style.background = 'rgba(26, 26, 26, 0.98)';
                 } else {
-                    navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+                    navbar.style.background = 'rgba(26, 26, 26, 0.95)';
                 }
             }, 100));
             
