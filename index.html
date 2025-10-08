@@ -666,9 +666,15 @@
             transform: rotate(15deg);
         }
 
-        /* Color Variations - Updated for Mobile */
+        /* Color Variations - Updated for Grid Layout */
         .color-variation {
             margin-bottom: 20px;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
         }
 
         .color-option {
@@ -678,6 +684,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             border: 3px solid transparent;
+            aspect-ratio: 1/1;
         }
 
         .color-option.active {
@@ -692,7 +699,8 @@
 
         .color-option img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             display: block;
         }
 
@@ -1252,6 +1260,12 @@
             
             .countdown-value {
                 font-size: 1.2rem;
+            }
+            
+            /* Adjust color grid for mobile */
+            .color-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
             }
         }
         
@@ -2291,6 +2305,7 @@
     </div>
 </section>
 
+
     <!-- Trust Indicators -->
     <section class="trust-indicators">
         <div class="container">
@@ -2673,21 +2688,23 @@
                             <p class="text-success"><i class="fas fa-truck me-2"></i>Penghantaran Percuma</p>
                         </div>
                         
-                        <!-- Color Variations -->
+                        <!-- Color Variations - Updated Grid Layout -->
 <div class="mb-4">
     <h5 class="text-white">Pilih Warna:</h5>
-    <div class="color-option active mb-3" onclick="selectColor(0, 'black')">
-        <img src="https://cdn.jsdelivr.net/gh/hasrastore-ops/titanmedia@v1.0/black.webp" alt="Black" class="w-100 d-block">
-        <div class="color-label">Black</div>
-    </div>
-    <div class="color-option mb-3" onclick="selectColor(1, 'green')">
-        <img src="https://cdn.jsdelivr.net/gh/hasrastore-ops/titanmedia@v1.0/green.webp" alt="Green" class="w-100 d-block">
-        <div class="color-label">Green</div>
-    </div>
-    <div class="color-option sold-out mb-3" onclick="selectColor(2, 'brown')">
-        <img src="https://cdn.jsdelivr.net/gh/hasrastore-ops/titanmedia@v1.0/brown.webp" alt="Brown" class="w-100 d-block">
-        <div class="color-label">Brown</div>
-        <div class="sold-out-badge">HABIS</div>
+    <div class="color-grid">
+        <div class="color-option active" onclick="selectColor(0, 'black')">
+            <img src="https://cdn.jsdelivr.net/gh/hasrastore-ops/titanmedia@v1.0/black.webp" alt="Black">
+            <div class="color-label">Black</div>
+        </div>
+        <div class="color-option" onclick="selectColor(1, 'green')">
+            <img src="https://cdn.jsdelivr.net/gh/hasrastore-ops/titanmedia@v1.0/green.webp" alt="Green">
+            <div class="color-label">Green</div>
+        </div>
+        <div class="color-option sold-out" onclick="selectColor(2, 'brown')">
+            <img src="https://cdn.jsdelivr.net/gh/hasrastore-ops/titanmedia@v1.0/brown.webp" alt="Brown">
+            <div class="color-label">Brown</div>
+            <div class="sold-out-badge">HABIS</div>
+        </div>
     </div>
 </div>
                         
