@@ -33,7 +33,7 @@
         content_category: 'Watches',
         content_ids: ['titanx-h11'],
         content_type: 'product',
-        value: 89.90 * quantity,
+        value: 69.90 * quantity,
         currency: 'MYR'
       });
     }
@@ -848,7 +848,7 @@
             opacity: 1;
         }
 
-        /* Cart Sidebar */
+        /* Cart Sidebar - HIDDEN BY DEFAULT */
         .cart-sidebar {
             position: fixed;
             right: -400px;
@@ -860,10 +860,12 @@
             transition: right 0.3s ease;
             z-index: 1100;
             overflow-y: auto;
+            visibility: hidden; /* Added to ensure it's completely hidden */
         }
 
         .cart-sidebar.active {
             right: 0;
+            visibility: visible; /* Make visible when active */
         }
 
         .cart-header {
@@ -877,6 +879,7 @@
 
         .cart-body {
             padding: 20px;
+            padding-bottom: 120px; /* Added padding to ensure checkout button is visible */
         }
 
         .cart-item {
@@ -890,11 +893,19 @@
         }
 
         .cart-footer {
-            position: sticky;
+            position: fixed;
             bottom: 0;
+            right: 0;
+            width: 400px;
             background: var(--bg-dark);
             padding: 20px;
             border-top: 1px solid var(--nude-light);
+            z-index: 1101;
+            visibility: hidden; /* Hidden by default */
+        }
+
+        .cart-sidebar.active .cart-footer {
+            visibility: visible; /* Visible when cart is active */
         }
 
         .cart-overlay {
@@ -1132,6 +1143,10 @@
             .cart-sidebar {
                 width: 100%;
                 right: -100%;
+            }
+            
+            .cart-footer {
+                width: 100%;
             }
             
             .countdown-timer {
@@ -2056,6 +2071,147 @@
             margin: 0;
             font-weight: 500;
         }
+        
+        /* Offer Section */
+        .offer-section {
+            padding: 60px 0;
+            background: var(--bg-card);
+            position: relative;
+        }
+        
+        .offer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .offer-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 50px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .offer-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .offer-card {
+            background: var(--bg-dark);
+            border-radius: 15px;
+            padding: 30px;
+            width: 100%;
+            max-width: 350px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--nude-light);
+            transition: transform 0.3s ease;
+        }
+        
+        .offer-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .offer-card-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .offer-card-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .offer-card-subtitle {
+            font-size: 1rem;
+            color: var(--text-dark);
+        }
+        
+        .price-container {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .original-price {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            text-decoration: line-through;
+            margin-bottom: 5px;
+        }
+        
+        .sale-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .price-note {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-style: italic;
+        }
+        
+        .offer-features {
+            margin-bottom: 25px;
+        }
+        
+        .offer-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .offer-feature i {
+            color: var(--accent-color);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .offer-feature-text {
+            color: var(--text-light);
+        }
+        
+        .offer-cta {
+            background: linear-gradient(135deg, var(--nude-light), var(--nude-medium));
+            color: var(--bg-dark);
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .offer-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(229, 212, 175, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .offer-title {
+                font-size: 2rem;
+            }
+            
+            .offer-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .offer-card {
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2107,12 +2263,12 @@
                     <div class="text-content">
                         <h1>TitanX-H11: Kualiti Premium Untuk Gaya Hidup Moden</h1>
                         <p>Pantau kesihatan dengan tepat, kekal aktif, dan nampak bergaya dengan jam tangan pintar premium kami yang direka untuk ketahanan dan prestasi.</p>
-                        <div class="stock-counter">
-                            <i class="fas fa-fire me-2"></i> <span id="stockLeft">13</span> unit tinggal - Jangan ketinggalan!
+                        <div class="stock-counter fa-shake">
+                            <i class="fas fa-fire me-2"></i> <span id="stockLeft">16</span> unit tinggal - Jangan Terlepas!
                         </div>
                         <div class="d-flex flex-column flex-sm-row gap-3">
-                            <button class="btn btn-light btn-lg px-4 py-3" onclick="scrollToPricing()">
-                                <i class="fas fa-shopping-cart me-2"></i> Beli Sekarang - Jimat RM99.10
+                            <button class="btn btn-light btn-lg px-4 py-3 fa-beat" onclick="scrollToPricing()">
+                                <i class="fas fa-shopping-cart me-2"></i> Beli Sekarang - Jimat RM119.10
                             </button>
                             <button class="btn btn-outline-light btn-lg px-4 py-3" onclick="showVideo()">
                                 <i class="fas fa-play-circle me-2"></i> Lihat Video
@@ -2290,7 +2446,7 @@
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="display-4 fw-bold text-white">Apa Kata Pelanggan Kami</h2>
-                <p class="lead text-white">Sertai 500,000+ pengguna berpuas hati di seluruh dunia</p>
+                <p class="lead text-white">Sertai 1,265 pengguna berpuas hati di Malaysia</p>
             </div>
             <div class="row">
                 <div class="col-md-6 col-lg-4">
@@ -2307,7 +2463,7 @@
                             <img src="https://picsum.photos/seed/user1/50/50.jpg" alt="User" class="author-avatar rounded-circle">
                             <div>
                                 <h6 class="mb-0 text-white">Ahmad Razif</h6>
-                                <small class="text-muted">Pembeli Disahkan</small>
+                                <div class="testimonial-date">Verified Buyer<span> </span><i class="fa-solid fa-circle-check"></i></div>
                                 <div class="testimonial-date">2 minggu lepas</div>
                             </div>
                         </div>
@@ -2327,7 +2483,7 @@
                             <img src="https://picsum.photos/seed/user2/50/50.jpg" alt="User" class="author-avatar rounded-circle">
                             <div>
                                 <h6 class="mb-0 text-white">Nurhaliza</h6>
-                                <small class="text-muted">Pembeli Disahkan</small>
+                                <div class="testimonial-date">Verified Buyer<span> </span><i class="fa-solid fa-circle-check"></i></div>
                                 <div class="testimonial-date">1 bulan lepas</div>
                             </div>
                         </div>
@@ -2347,7 +2503,7 @@
                             <img src="https://picsum.photos/seed/user3/50/50.jpg" alt="User" class="author-avatar rounded-circle">
                             <div>
                                 <h6 class="mb-0 text-white">Mohd Danial</h6>
-                                <small class="text-muted">Pembeli Disahkan</small>
+                                <div class="testimonial-date">Verified Buyer<span> </span><i class="fa-solid fa-circle-check"></i></div>
                                 <div class="testimonial-date">3 minggu lepas</div>
                             </div>
                         </div>
@@ -2394,18 +2550,126 @@
     </div>
 </section>
 
+    <!-- Offer Section -->
+    <section class="offer-section" id="offers">
+        <div class="offer-container">
+            <h2 class="offer-title">Harga Tak Masuk AKAL!</h2>
+            <div class="offer-cards">
+                <!-- Online Payment Offer -->
+                <div class="offer-card">
+                    <div class="offer-card-header">
+                        <h3 class="offer-card-title">ONLINE PAYMENT</h3>
+                        <p class="offer-card-subtitle">Jimat Sehingga RM119.10 untuk yang bayar On9, Voucher terhad! </p>
+                    </div>
+                    <div class="price-container">
+                        <p class="original-price">HARGA ASAL RM189.00</p>
+                        <p class="sale-price fa-beat-fade">RM69.90</p>
+                        <p class="price-note fa-shake">UNTUK 16 unit lagi</p>
+                    </div>
+                    <div class="offer-features">
+                        <div class="offer-feature">
+                            <i class="fas fa-truck"></i>
+                            <span class="offer-feature-text">CEPAT SAMPAI- 1~3 HARI </span>
+                        </div>
+                        <div class="offer-feature">
+                            <i class="fas fa-shipping-fast"></i>
+                            <span class="offer-feature-text">FREE SHIPPING</span>
+                        </div>
+                        <div class="offer-feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <span class="offer-feature-text">WARRANTY</span>
+                        </div>
+                        <div class="offer-feature">
+                            <i class="fas fa-clock"></i>
+                            <span class="offer-feature-text">POST DALAM MASA 24 JAM</span>
+                        </div>
+                    </div>
+                    <button class="offer-cta fa-bounce" onclick="selectOffer('online')">BELI GUNA ON9 PAYMENT</button>
+                </div>
+                
+                <!-- COD Offer -->
+                <div class="offer-card">
+                    <div class="offer-card-header">
+                        <h3 class="offer-card-title">COD - BAYAR BILA SAMPAI</h3>
+                        <p class="offer-card-subtitle">Bayar Hanya Bila Barang Tiba</p>
+                    </div>
+                    <div class="price-container">
+                        <p class="original-price">HARGA ASAL RM189.00</p>
+                        <p class="sale-price">RM79.90</p>
+                        <p class="price-note">(COST COD RM10)</p>
+                    </div>
+                    <div class="offer-features">
+                        <div class="offer-feature">
+                            <i class="fas fa-truck"></i>
+                            <span class="offer-feature-text">DELIVERY 3-7 HARI</span>
+                        </div>
+                        <div class="offer-feature">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span class="offer-feature-text">+RM 10 Cas dari COURIER</span>
+                        </div>
+                        <div class="offer-feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <span class="offer-feature-text">WARRANTY</span>S
+                        </div>
+                        <div class="offer-feature">
+                            <i class="fas fa-clock"></i>
+                            <span class="offer-feature-text">POST DALAM MASA 1-3 HARI</span>
+                        </div>
+                        <div class="offer-feature">
+                            <i class="fa-solid fa-money-bill-1-wave fa-beat-fade"></i>
+                            <span>BAYAR BILA SAMPAI</span>
+                        </div>
+                    </div>
+                    <button class="offer-cta" onclick="selectOffer('cod')">BELI GUNA COD</button>
+                </div>
+                
+                <!-- Bundle Offer -->
+                <div class="offer-card">
+                    <div class="offer-card-header">
+                        <h3 class="offer-card-title">BUNDLE</h3>
+                        <p class="offer-card-subtitle">Beli 2 Unit atau Lebih</p>
+                    </div>
+                    <div class="price-container">
+                        <p class="original-price">ORIGINAL PRICE RM189.00</p>
+                        <p class="sale-price fa-beat">RM59.90/unit</p>
+                        <p class="price-note">Jimat Lebih Banyak</p>
+                    </div>
+                    <div class="offer-features">
+                        <div class="offer-feature">
+                            <i class="fas fa-truck"></i>
+                            <span class="offer-feature-text">DELIVERY 1-3 HARI</span>
+                        </div>
+                        <div class="offer-feature">
+                            <i class="fas fa-shipping-fast"></i>
+                            <span class="offer-feature-text">FREE SHIPPING</span>
+                        </div>
+                        <div class="offer-feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <span class="offer-feature-text">WARRANTY</span>
+                        </div>
+                        <div class="offer-feature">
+                            <i class="fas fa-clock"></i>
+                            <span class="offer-feature-text">POST DALAM MASA 24 JAM</span>
+                        </div>
+                    </div>
+                    <button class="offer-cta fa-bounce" onclick="selectOffer('bundle')">ORDER COMBO 2</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Pricing Section -->
     <section class="pricing-section" id="pricing">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="pricing-card text-center">
-                        <div class="discount-badge">TAWARAN TERHAD</div>
+                        <div class="discount-badge fa-beat-fade">TAWARAN TERHAD</div>
                         <h2 class="display-5 fw-bold mb-4">TitanX-H11</h2>
                         <div class="mb-4">
                             <span class="original-price">RM189</span>
-                            <div class="price-tag">RM89.90</div>
-                            <p class="lead text-white">Jimat RM99.10 (52% OFF)</p>
+                            <div class="price-tag">RM69.90</div>
+                            <p class="lead text-white">Jimat RM119.10 (63% OFF)</p>
                             <p class="text-success"><i class="fas fa-truck me-2"></i>Penghantaran Percuma</p>
                         </div>
                         
@@ -2505,28 +2769,12 @@
                 <div class="fact-content">
                     <p>Pembayaran melalui online transfer di website</p>
                     <p>Untuk pembayaran melalui bank/qr sila buat order dan tekan whatsapp untuk sahkan pesanan</p>
-                    <p>Pembayaran COD - Sampai baru bayar ada cas tambahan dari courier RM7</p>
+                    <p>Pembayaran COD - Sampai baru bayar ada cas tambahan dari courier RM10</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Countdown Timer -->
-    <section class="countdown-section">
-        <div class="container">
-            <h3 class="mb-3">⚡ Jualan Kilat Tamat Dalam:</h3>
-            <div class="countdown-timer">
-                <div class="countdown-item">
-                    <div class="countdown-value" id="minutes">30</div>
-                    <div class="countdown-label">Minit</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-value" id="seconds">00</div>
-                    <div class="countdown-label">Saat</div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- WhatsApp Button -->
     <div class="whatsapp-float">
@@ -2540,14 +2788,14 @@
 
     <!-- Order Button -->
     <div class="order-float">
-        <div class="order-tooltip">Order sekarang & Jimat RM99.10</div>
+        <div class="order-tooltip">Order sekarang & Jimat RM119.10</div>
         <button class="order-button" onclick="scrollToPricing()">
-            <i class="fas fa-shopping-cart me-2"></i> Order - Jimat RM99.10
+            <i class="fas fa-shopping-cart me-2"></i> Order - Jimat RM119.10
         </button>
     </div>
 
 
-    <!-- Cart Sidebar -->
+    <!-- Cart Sidebar - HIDDEN BY DEFAULT -->
     <div class="cart-overlay" onclick="toggleCart()"></div>
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
@@ -2574,7 +2822,7 @@
             </div>
             <div class="d-flex justify-content-between mb-3">
                 <span class="text-white">Jumlah:</span>
-                <span class="fw-bold text-white" id="cartTotal">RM0</span>
+                <span class="fw-bold text-white fa-beat" id="cartTotal">RM0</span>
             </div>
             <div class="d-flex justify-content-between mb-3">
                 <span class="text-white">Harga Asal:</span>
@@ -2659,7 +2907,7 @@
                     </div>
                     <div class="payment-option" onclick="selectPayment('cod')">
                         <input type="radio" name="payment" value="cod" id="codPayment">
-                        <label for="codPayment">Bayar bila Barang Sampai (COD) - Cas tambahan RM7 (Tidak tersedia untuk Sabah & Sarawak)</label>
+                        <label for="codPayment">Bayar bila Barang Sampai (COD) - Cas tambahan RM10 (Tidak tersedia untuk Sabah & Sarawak)</label>
                     </div>
                 </div>
                 
@@ -2713,11 +2961,11 @@
                 </div>
                 <div class="order-detail-row">
                     <span class="order-detail-label">Jumlah Bayaran:</span>
-                    <span class="order-detail-value" id="orderTotal">RM89.90</span>
+                    <span class="order-detail-value" id="orderTotal">RM69.90</span>
                 </div>
                 <div class="order-detail-row order-total-row">
                     <span class="order-detail-label">Jumlah Bayaran kepada Posmen:</span>
-                    <span class="order-total-value" id="orderCodTotal">RM96.90</span>
+                    <span class="order-total-value" id="orderCodTotal">RM79.90</span>
                 </div>
             </div>
             
@@ -2761,7 +3009,7 @@
                 </div>
                 <div class="online-payment-detail-row">
                     <span class="online-payment-detail-label">Jumlah Bayaran:</span>
-                    <span class="online-payment-detail-value" id="onlineOrderTotal">RM89.90</span>
+                    <span class="online-payment-detail-value" id="onlineOrderTotal">RM69.90</span>
                 </div>
             </div>
             
@@ -2815,7 +3063,7 @@
                 <i class="fas fa-gift"></i>
             </div>
             <h2 class="voucher-title">Tahniah! Anda Dapat Voucher</h2>
-            <div class="voucher-amount">RM99.10 Off</div>
+            <div class="voucher-amount">RM119.10 Off</div>
             <p class="voucher-description">Voucher ini sah selama 15 minit sahaja. Sila gunakan segera untuk pembelian anda!</p>
             <div class="voucher-timer" id="voucher-timer">
                 <div class="timer-unit">
@@ -2904,7 +3152,7 @@
         };
         
         // Voucher configuration
-        const VOUCHER_DISCOUNT = 99.10; // RM99.10 voucher discount (189 - 89.90)
+        const VOUCHER_DISCOUNT = 119.10; // RM119.10 voucher discount (189 - 69.90)
         const ORIGINAL_PRICE = 189.00; // RM189.00 original price
         
         // Cart Management
@@ -2915,8 +3163,8 @@
         let selectedColorIndex = 0;
         let selectedColorName = 'black';
         const originalPrice = 189.00;
-        const salesPrice = 89.90; // Updated to RM89.90
-        const codFee = 7.00;
+        const salesPrice = 69.90; // Updated to RM69.90
+        const codFee = 10.00; // Updated to RM10.00
         const colorPrices = {
             'black': salesPrice,
             'green': salesPrice,
@@ -3293,27 +3541,27 @@
                 
                 // Apply bundle discount for 2 or more items (highest priority)
                 if (totalItems >= 2) {
-                    totalFinal = totalItems * 79.90; // Bundle price per item
+                    totalFinal = totalItems * 59.90; // Bundle price per item
                     totalDiscount = totalOriginal - totalFinal;
                     discountMessage = 'Bundle Offer (2+ Items):';
-                    discountNote = `<p>Bundle Price: RM79.90 per unit | Free Shipping</p>`;
-                    savingsMessage = `<p class="savings-message">Jimat RM${(ORIGINAL_PRICE - 79.90).toFixed(2)} per unit!</p>`;
+                    discountNote = `<p>Bundle Price: RM59.90 per unit | Free Shipping</p>`;
+                    savingsMessage = `<p class="savings-message">Jimat RM${(ORIGINAL_PRICE - 59.90).toFixed(2)} per unit!</p>`;
                 } 
                 // Apply voucher discount if no bundle
                 else if (voucherClaimed) {
                     totalDiscount = totalItems * VOUCHER_DISCOUNT;
                     totalFinal = totalOriginal - totalDiscount;
-                    discountMessage = 'Voucher Applied:';
+                    discountMessage = 'Voucher Applied-tinggal 7 lagi:';
                     discountNote = `<p class="voucher-note">Voucher Applied: *terhad 19 orang terawal RM${VOUCHER_DISCOUNT.toFixed(2)}</p>`;
                     savingsMessage = `<p class="savings-message">Tahniah anda mendapat harga istimewa</p>`;
                 } 
                 // Apply single item discount
                 else {
-                    totalFinal = totalItems * 89.90; // Updated to RM89.90
+                    totalFinal = totalItems * 69.90; // Updated to RM69.90
                     totalDiscount = totalOriginal - totalFinal;
                     discountMessage = 'Harga Promosi:';
-                    discountNote = `<p>Special Price: RM89.90 per unit</p>`;
-                    savingsMessage = `<p class="savings-message">Jimat RM${(ORIGINAL_PRICE - 89.90).toFixed(2)} per unit!</p>`;
+                    discountNote = `<p>Special Price: RM69.90 per unit</p>`;
+                    savingsMessage = `<p class="savings-message">Jimat RM${(ORIGINAL_PRICE - 69.90).toFixed(2)} per unit!</p>`;
                 }
                 
                 // Update cart items display
@@ -3323,14 +3571,14 @@
                     let itemDiscountNote = '';
                     
                     if (totalItems >= 2) {
-                        itemFinal = 79.90;
-                        itemDiscountNote = `<p>Bundle Price: RM79.90</p>`;
+                        itemFinal = 59.90;
+                        itemDiscountNote = `<p>Bundle Price: RM59.90</p>`;
                     } else if (voucherClaimed) {
                         itemFinal = ORIGINAL_PRICE - VOUCHER_DISCOUNT;
                         itemDiscountNote = `<p class="voucher-note">Voucher Applied: RM${VOUCHER_DISCOUNT.toFixed(2)}</p>`;
                     } else {
-                        itemFinal = 89.90; // Updated to RM89.90
-                        itemDiscountNote = `<p>Special Price: RM89.90</p>`;
+                        itemFinal = 69.90; // Updated to RM69.90
+                        itemDiscountNote = `<p>Special Price: RM69.90</p>`;
                     }
                     
                     const colorName = item.color === 'black' ? 'Hitam' : 
@@ -3380,22 +3628,23 @@
             updateCart();
         }
 
-        // Toggle Cart
+        // Toggle Cart - ONLY SHOW WHEN CLICKED
         function toggleCart() {
             const cartSidebar = document.getElementById('cartSidebar');
             const cartOverlay = document.querySelector('.cart-overlay');
             
-            // Force cart to open (not toggle) when called from addToCart
-            if (!cartSidebar.classList.contains('active')) {
+            // Check if cart is currently active
+            if (cartSidebar.classList.contains('active')) {
+                // Close cart
+                cartSidebar.classList.remove('active');
+                cartOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            } else {
+                // Open cart
                 cartSidebar.classList.add('active');
                 cartOverlay.classList.add('active');
                 // Prevent body scroll when cart is open
                 document.body.style.overflow = 'hidden';
-            } else {
-                cartSidebar.classList.remove('active');
-                cartOverlay.classList.remove('active');
-                // Restore body scroll
-                document.body.style.overflow = '';
             }
         }
 
@@ -3440,6 +3689,27 @@
                     showNotification('COD tidak tersedia untuk Sabah & Sarawak', 'error');
                     document.getElementById('onlinePayment').checked = true;
                 }
+            }
+        }
+
+        // Select Offer
+        function selectOffer(offerType) {
+            // Scroll to pricing section
+            scrollToPricing();
+            
+            // Update pricing based on offer type
+            if (offerType === 'online') {
+                // Online payment is already the default (RM69.90)
+                showNotification('Penawaran pembayaran online dipilih', 'success');
+            } else if (offerType === 'cod') {
+                // Set COD payment method
+                document.getElementById('codPayment').checked = true;
+                showNotification('Penawaran COD dipilih', 'success');
+            } else if (offerType === 'bundle') {
+                // Set quantity to 2 for bundle
+                quantity = 2;
+                document.getElementById('quantity').textContent = quantity;
+                showNotification('Penawaran Bundle dipilih. Kuantiti ditetapkan kepada 2 unit.', 'success');
             }
         }
 
@@ -3520,21 +3790,21 @@
             
             // Apply bundle pricing for 2 or more items
             if (totalItems >= 2) {
-                totalAmount = totalItems * 79.90; // Bundle price per item
+                totalAmount = totalItems * 59.90; // Bundle price per item
             } else {
                 // Single item pricing
                 const voucherClaimed = localStorage.getItem('voucherClaimed') === 'true';
                 if (voucherClaimed) {
                     totalAmount = totalItems * (ORIGINAL_PRICE - VOUCHER_DISCOUNT);
                 } else {
-                    totalAmount = totalItems * 89.90; // Updated to RM89.90
+                    totalAmount = totalItems * 69.90; // Updated to RM69.90
                 }
             }
             
             // Add COD fee if applicable (only for single items)
             let codAmount = totalAmount;
             if (paymentMethod === 'cod') {
-                codAmount += 7.00; // RM7 courier fee
+                codAmount += 10.00; // RM10 courier fee
             }
             
             // Track InitiateCheckout event
@@ -3924,7 +4194,7 @@
             formData.append('billDescription', `Pembelian ${orderData.quantity} unit ${orderData.product}`);
             formData.append('billPriceSetting', 1); // Fixed amount
             formData.append('billPayorInfo', 1); // Require payer information
-            formData.append('billAmount', amount * 100); // Convert to cents (RM89.90 = 8990)
+            formData.append('billAmount', amount * 100); // Convert to cents (RM69.90 = 6990)
             formData.append('billReturnUrl', TOYYIBPAY_CONFIG.returnUrl);
             formData.append('billCallbackUrl', TOYYIBPAY_CONFIG.callbackUrl);
             formData.append('billExternalReferenceNo', billNo);
@@ -4032,7 +4302,7 @@
             
             if (voucherClaimed !== 'true') {
                 localStorage.setItem('voucherClaimed', 'true');
-                showNotification('Voucher berjaya diclaim! RM99.10 akan dipotong semasa pembayaran.', 'success');
+                showNotification('Voucher berjaya diclaim! RM119.10 akan dipotong semasa pembayaran.', 'success');
                 updateCart(); // Refresh cart display
             } else {
                 showNotification('Anda telah claim voucher ini sebelum ini.', 'info');
